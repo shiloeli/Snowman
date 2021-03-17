@@ -20,7 +20,7 @@ const int min = 11111111;
 
 //Test valid
 	int my_number = number;
-    int stop_check = 0;
+    const int stop_check = 0;
 	int digit = 0;
     int max_value = 4;
     int min_value = 1;
@@ -55,7 +55,7 @@ const int min = 11111111;
     
 
     //check hat
-    int num_hat = (number / counter);
+    const int num_hat = (number / counter);
     const int one_hat = 1;
     const int two_hat = 2;
     const int three_hat = 3;
