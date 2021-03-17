@@ -52,14 +52,19 @@ const int min = 11111111;
 
     bool flag_up = false;
     bool flag_down = false;
-    const int value_upArm = 2;
+    
 
     //check hat
     int num_hat = (number / counter);
-    int one_hat = 1;
-    int two_hat = 2;
-    int three_hat = 3;
-    int four_hat = 4;
+    const int one_hat = 1;
+    const int two_hat = 2;
+    const int three_hat = 3;
+    const int four_hat = 4;
+
+    //check arm
+    const int value_upArm = 2;
+    const int value_downArm = 1;
+    const int value_downArmTwo = 3;
 
     string hat;
     string head;
@@ -67,6 +72,7 @@ const int min = 11111111;
     string build_snowman;
     string temp_build;
 
+    //name case
     const int case0_hat = 0;
     const int case1_nose = 1;
     const int case2_leftEye = 2;
@@ -80,49 +86,43 @@ while(index < max_index){
     num = (number / counter);
 
     switch(index){
-        //Hat
+    
         case(case0_hat):
             hat = Hat.at(num-1) + "\n";
             break;
 
-        //Nose
         case(case1_nose):
             head = Nose.at(num-1);
             break;
 
-        //LeftEye
         case(case2_leftEye):
             temp_build = LeftEye.at(num-1) + head;
             head = temp_build;
             break;
 
-        //RightEye
         case(case3_rightEye):
             head += RightEye.at(num-1);
             break;
 
-        //LeftArm
         case(case4_leftArm):
             if(num == value_upArm){
             temp_build = LeftArm.at(num-1) + head;
               head = temp_build;
               flag_up = true;
-            }else if(num == 1 || num ==3){
+            }else if(num == value_downArm || num == value_downArmTwo){
              stomach = LeftArm.at(num-1);
              flag_down = true;
             }
             break;
 
-        //RightArm
         case(case5_rightArm):
           if(num == value_upArm){
             head += RightArm.at(num-1);
-            }else if(num == 1 || num == 3){
+            }else if(num == value_downArm || num == value_downArmTwo){
             stomach += RightArm.at(num-1);
             }
             break;
 
-        //Torso
         case(case6_torso):
         if(flag_down){
             stomach.insert(1, Torso.at(num-1));
@@ -132,7 +132,6 @@ while(index < max_index){
         }
             break;
 
-        //Base
         case(case7_base):
             if(flag_down || flag_up){
                 if(num_hat == one_hat){
@@ -165,7 +164,6 @@ while(index < max_index){
         build_snowman += stomach + "\n";
         build_snowman += Base.at(num-1);
         }
-        return build_snowman;
     }
     number = number - (num * counter);
     counter = counter / num_div;
